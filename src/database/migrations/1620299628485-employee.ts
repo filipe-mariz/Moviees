@@ -25,6 +25,19 @@ export class employee1620399628485 implements MigrationInterface {
           name: 'level_authorization',
           type: 'integer',
           isNullable: false
+        },
+
+        {
+          name: 'user_name',
+          type: 'varchar',
+          isNullable: false,
+          isUnique: true
+        },
+
+        {
+          name: 'password',
+          type: 'varchar',
+          isNullable: false
         }
       ]
     }))
