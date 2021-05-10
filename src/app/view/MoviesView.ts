@@ -1,4 +1,5 @@
 import Movies from '../model/Movies';
+import ImagesView from './ImagesView';
 
 export default {
   Render(movies: Movies) {
@@ -6,7 +7,8 @@ export default {
       nome: movies.name,
       tempo: movies.time,
       sinopse: movies.description,
-      price: movies.price
+      price: movies.price,
+      images: ImagesView.Render(movies.images)
     }
   },
 
