@@ -10,8 +10,8 @@ const movies = Router();
 const upload = multer(multerConfig);
 
 movies.post('/movies', authMiddleware, validationMiddleware, upload.array('image'),  MoviesController.create);
-movies.get('/movies', authMiddleware, MoviesController.viewAll);
-movies.get('/movies/:id', authMiddleware, MoviesController.viewOne);
+movies.get('/movies', MoviesController.viewAll);
+movies.get('/movies/:id', MoviesController.viewOne);
 movies.delete('/movies/:id', authMiddleware, bossMiddleware, MoviesController.destroy);
 
 export default movies;

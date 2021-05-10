@@ -1,0 +1,12 @@
+{
+    "name": "filipe",
+    "level_authorization": "1",
+    "user_name": "filipe_mariz",
+    "password": "teste_1234",
+    "passwordConfirmation": "test_1234"
+}
+
+{
+    "user_name": "filipe_mariz",
+    "password": "teste_1234"
+}
