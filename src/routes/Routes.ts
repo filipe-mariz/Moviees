@@ -1,8 +1,10 @@
-import { Router } from 'express';
-import EmployeeController from '../app/controller/EmployeeController';
+import express from 'express';
+import employ from './Employ.Routes';
+import movies from './Movies.Routes';
 
-const routes = Router();
+const routes = express();
 
-routes.post('/create-employee', EmployeeController.create);
-
-export default routes
+export default routes.use(
+  employ,
+  movies,
+);
