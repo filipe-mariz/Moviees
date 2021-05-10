@@ -63,7 +63,7 @@ export default {
 
     const employee = await getRepository(Employee).findOneOrFail(id);
 
-    return response.json(employeeView.Render(employee))
+    return response.status(200).json(employeeView.Render(employee))
   },
 
   async viewAll(request: Request, response: Response) {
@@ -71,12 +71,12 @@ export default {
 
     const employee = await employeeRepository.find();
 
-    return response.json(employeeView.renderMany(employee))
+    return response.status(200).json(employeeView.renderMany(employee))
   },
 
   async destroy(request: Request, response: Response) {
     const results = await getRepository(Employee).delete(request.params.id)
 
-    return response.json({ message: 'User deleted'});
+    return response.status(200).json({ message: 'User deleted'});
   }
 }

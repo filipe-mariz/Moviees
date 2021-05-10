@@ -59,7 +59,7 @@ export default {
 
     	const movies = await getRepository(Movies).findOneOrFail(id);
 
-    	return response.json(moviesView.Render(movies))
+    	return response.status(200).json(moviesView.Render(movies))
 	},
 
 	async viewAll(request: Request, response: Response) {
@@ -67,13 +67,12 @@ export default {
 	
 		const movies = await moviesRepository.find();
 	
-		return response.json(moviesView.renderMany(movies))
+		return response.status(200).json(moviesView.renderMany(movies))
 	},
 
 	async destroy(request: Request, response: Response) {
 		const results = await getRepository(Movies).delete(request.params.id)
 	
-		return response.json({ message: 'User deleted'});
+		return response.status(200).json({ message: 'User deleted'});
 	}
-
 }
