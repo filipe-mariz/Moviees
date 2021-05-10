@@ -17,6 +17,11 @@ export default {
 
 		const movieRepository = await getRepository(Movies);
 
+		const requestImages = request.files as Express.Multer.File[];
+    	const image = requestImages.map(image => {
+      		return { path: image.filename }
+    	})
+
 		const movieExists = await movieRepository.findOne({ where: { name }})
 		if (movieExists) {
 			return response.status(400).json({
@@ -30,7 +35,8 @@ export default {
 			price,
 			description,
 			data_born,
-			data_end
+			data_end,
+			image
 		}
 
 		const schemma = Yup.object().shape({
@@ -39,7 +45,10 @@ export default {
 			price: Yup.number().required(),
 			description: Yup.string().required(),
 			data_born: Yup.date().required(),
-			data_end: Yup.date().required()
+			data_end: Yup.date().required(),
+			image: Yup.array(Yup.object().shape({
+				path: Yup.string().required(),
+			})),
 		})
 
 		await schemma.validate(data, {
