@@ -1,8 +1,11 @@
 import { 
   Column, 
   Entity, 
+  JoinColumn, 
+  OneToMany, 
   PrimaryGeneratedColumn 
 } from "typeorm";
+import Images from './Images';
 
 @Entity('movies')
 class Movies {
@@ -26,6 +29,12 @@ class Movies {
 
   @Column()
   data_end: Date
+
+  @OneToMany(() => Images, image => image.movies, {
+    cascade: ['insert', 'update']
+  })
+  @JoinColumn({ name: 'movies_id'})
+  images: Images
 }
 
 export default Movies;
