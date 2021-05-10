@@ -1,15 +1,32 @@
 import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 
-export default function validationMiddleware(
-  request: Request, response: Response, next: NextFunction
-) {
-  const validation = request.headers.accept;
-  const accept = process.env.VALIDATION;
-  if(validation != accept) {
-    return response.status(400).json({
-      message: "You don't have a auth"
-    })
-  } else {
-    return next();
-  }
+interface TokenPayLoad {
+    id: number,
+    iat: number,
+    exp: number,    
+}
+
+export default function authMiddleware (
+    request: Request, response: Response, next: NextFunction
+){
+    const authorization = request.headers.authorization;
+    
+    if (!authorization) {
+        return response.status(401).json({ message: "User is not valid" })
+    }
+
+    const token = authorization.split(' ')[1];
+    try {
+        const data = jwt.verify(token, process.env.TOKEN_VALIDATION)
+        console.log(data);
+
+        const { id } = data as TokenPayLoad;
+        request.body = id;
+
+        return next();
+
+    } catch(err) {
+        return response.status(401).json({ message: "User is not" })
+    }
 }
