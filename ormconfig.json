@@ -4,15 +4,14 @@
     "port": 5432,
     "username": "postgres",
     "password": "300FFM300ffm",
-    "database": "Test",
-    "database_test": "database_test",
+    "database": "Movies",
+    "storage": "./src/database/database.sqlite",
     "entities": [
        "./src/app/model/**/*.ts"
     ],
     "migrations": [
        "./src/database/migrations/*.ts"
-    ],
-    
+    ],    
     "cli": {
         "migrationsDir": "./src/database/migrations"
     }
