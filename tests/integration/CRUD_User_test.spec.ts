@@ -9,7 +9,6 @@ describe('Create User', () => {
     await connection.runMigrations();
   })
 
-  //criação de usuário
   it ('Should be abel a new employee create', async () => {
     const response = await request(app).post('/employee')
     .send({
